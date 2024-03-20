@@ -78,12 +78,12 @@ def create_property():
         filename = secure_filename(photo.filename)
         property_ = Property(
             form.title.data,
-            form.numBedrms.data,
-            form.numBathrms.data,
+            form.numBedrooms.data,
+            form.numBathrooms.data,
             form.location.data,
             form.price.data,
-            form.propType.data,
-            form.description.data,
+            form.pType.data,
+            form.desc.data,
             filename
         )
         photo.save(os.path.join(
@@ -92,7 +92,7 @@ def create_property():
         db.session.add(property_)
         db.session.commit()
         flash("Successfully Added")
-        return redirect(url_for('properties'))
+        return redirect(url_for('display_properties'))
     return render_template("create_property.html", form=form)
 
 
@@ -106,11 +106,19 @@ def get_properties():
     properties = db.session.query(Property).all()
     return properties 
 
-@app.route('/properties/<propertyid>')
+
+@app.route('/uploads/<filename>')
+def get_image(filename):
+   return send_from_directory(os.path.join(os.getcwd(),app.config['UPLOAD_FOLDER']),filename)
+
+
+
+@app.route('/properties/<int:propertyid>')
 def property(propertyid):
-    #for viewing an individual property using its id
-    prop = db.session.execute(db.select(Property).filter_by(id=propertyid)).scalar()
+    # for viewing an individual property using its id
+    prop = Property.query.get(propertyid)
     print(prop, propertyid)
-    return render_template('all_properties.html', property=prop)
+    return render_template('property.html', property=prop)
+
  
 

@@ -1,3 +1,32 @@
 body {
     padding-top: 5rem;
 }
+
+.parrallel{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.parrallel .form-group {
+    width: 48%; /* Adjust the width percentage as needed */
+}
+
+/* Optionally, you can set a max-width to prevent the input boxes from exceeding a certain width */
+.parrallel .form-control {
+    max-width: 100%; /* Ensures that the input boxes don't exceed the width of their parent container */
+}
+
+.property-container{
+    padding-right: 55px;
+}
+
+.properties-container{
+    display: flex;
+    flex-direction: row;
+}
+
+.properties-container img{
+    width: 400px;
+    height: auto;
+}
