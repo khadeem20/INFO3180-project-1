@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block main %}
+    <div class="single-property">
+        <img s\rc="{{ url_for('get_image', filename=property.fileName)}}">
+        <div class="side-content">
+            <p>{{ property.title }}</p>
+            <div class="side-by-side">
+                <p>${{ property.price }}</p>
+                <p>{{ property.pType }}</p>                
+            </div>
+            <p>{{ property.description }}</p>
+            <div class="side-by-side">
+                <p>{{ property.numBedrooms }} Bedrooms</p>
+                <p>{{ property.numBathrooms }} Bathrooms</p>              
+            </div>
+            <p>{{ property.location }}</p>
+            <button><a href="">Email Realtor</a></button>
+        </div>
+    </div>
+{% endblock %}
